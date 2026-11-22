@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cruza.exe — Cruzadinha de Arquitetura Computacional</title>
+  <meta name="description" content="Jogo de cruzadinha cyberpunk para treinar os termos de Arquitetura Computacional.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="topo">
+    <h1 class="logo" data-text="Cruza.exe">Cruza.exe</h1>
+    <p class="subtitulo">Invada o sistema: descubra os termos de Arquitetura Computacional.</p>
+  </header>
+
+  <nav class="abas" role="tablist" aria-label="Modos de jogo">
+    <button id="tabCruzadinha" class="aba ativa" role="tab" aria-selected="true" aria-controls="abaCruzadinha" type="button">Cruzadinha</button>
+    <button id="tabCpu" class="aba" role="tab" aria-selected="false" aria-controls="abaCpu" type="button">Montar a CPU</button>
+  </nav>
+
+  <main class="layout" id="abaCruzadinha" role="tabpanel">
+    <section class="painel painel-jogo" aria-label="Tabuleiro">
+      <div class="barra-pista" id="barraPista" aria-live="polite">
+        Selecione uma casa para ver a pista.
+      </div>
+
+      <div class="tabuleiro-wrap">
+        <div id="tabuleiro" class="tabuleiro" role="grid" aria-label="Cruzadinha"></div>
+      </div>
+
+      <div class="controles">
+        <button id="btnConferir" class="btn btn-principal" type="button">Conferir</button>
+        <button id="btnDica" class="btn" type="button">Revelar letra</button>
+        <button id="btnReiniciar" class="btn btn-perigo" type="button">Reiniciar</button>
+        <div class="placar" aria-live="polite">
+          <span id="contador" class="contador">0 de 16 palavras</span>
+          <span id="dicasUsadas" class="dicas-usadas">Dicas usadas: 0</span>
+        </div>
+      </div>
+
+      <p id="mensagem" class="mensagem" role="status"></p>
+
+      <details class="como-jogar">
+        <summary>Como jogar</summary>
+        <ul>
+          <li>Clique numa casa e digite. O cursor avança sozinho pela palavra.</li>
+          <li>Clique de novo na mesma casa (ou aperte Espaço) para trocar entre horizontal e vertical.</li>
+          <li>Setas movem o cursor; Tab pula para a próxima palavra.</li>
+          <li>Conferir marca em verde as palavras certas e em vermelho as erradas ou incompletas.</li>
+          <li>Revelar letra preenche uma casa da palavra selecionada.</li>
+        </ul>
+      </details>
+    </section>
+
+    <aside class="painel painel-pistas" aria-label="Pistas">
+      <div class="coluna-pistas">
+        <h2>Horizontais</h2>
+        <ol id="listaH" class="lista-pistas"></ol>
+      </div>
+      <div class="coluna-pistas">
+        <h2>Verticais</h2>
+        <ol id="listaV" class="lista-pistas"></ol>
+      </div>
+    </aside>
+  </main>
+
+  <section class="cpu-jogo" id="abaCpu" role="tabpanel" hidden>
+    <div class="painel">
+      <div class="barra-pista" id="cpuInstrucao" aria-live="polite">
+        Escolha um componente (clique ou arraste) e coloque no espaço cuja função combina com ele.
+      </div>
+
+      <div class="cpu-area">
+        <div class="cpu-caixa">
+          <div class="cpu-titulo">CPU</div>
+          <div class="cpu-slots" id="gCpu"></div>
+        </div>
+        <div class="grupo-rotulo">Barramentos</div>
+        <div class="barramentos" id="gBarramentos"></div>
+        <div class="grupo-rotulo">Memórias e periféricos</div>
+        <div class="memorias" id="gMemorias"></div>
+      </div>
+
+      <h2 class="bandeja-titulo">Componentes</h2>
+      <div class="bandeja" id="bandeja" aria-label="Componentes disponíveis"></div>
+
+      <div class="controles">
+        <button id="cpuReiniciar" class="btn btn-perigo" type="button">Reiniciar</button>
+        <div class="placar" aria-live="polite">
+          <span id="cpuContador" class="contador">0 de 10 componentes</span>
+          <span id="cpuTentativas" class="dicas-usadas">Tentativas erradas: 0</span>
+        </div>
+      </div>
+      <p id="cpuMensagem" class="mensagem" role="status"></p>
+    </div>
+  </section>
+
+
+  <footer class="rodape">Arquitetura Computacional · Sprint 3</footer>
+
+  <script src="script.js"></script>
+  <script src="cpu.js"></script>
+</body>
+</html>
